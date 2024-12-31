@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "367078767056",
+    "project_id": "login-f8dcd",
+    "storage_bucket": "login-f8dcd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367078767056:android:86624ea0b0bd94af89e1d5",
+        "android_client_info": {
+          "package_name": "com.example.first_aid_pro_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcwygqojzWJl486EhZy_cEhEFlwNcvXyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

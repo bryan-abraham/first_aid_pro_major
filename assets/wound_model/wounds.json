@@ -1,0 +1,153 @@
+{
+    "wounds": [
+        {
+            "Type": "Burn",
+            "steps": [
+                "Assess the Situation: Determine the severity of the burn injury.",
+                "Cool the Burn: Use cool (not cold) water to cool the burn for at least 10-15 minutes.",
+                "Protect the Wound: Cover the burn with a sterile, non-adhesive dressing.",
+                "Seek Medical Help: Third-degree burns require professional medical attention.",
+                "Monitor and Support: Provide reassurance and emotional support to the person."
+            ],
+            "requirements": [
+                "Cool water or clean damp cloth",
+                "Sterile dressing",
+                "Medical attention"
+            ]
+        },
+        {
+            "Type": "Cut",
+            "steps": [
+                "Clean the Wound: Rinse the cut with clean water to remove dirt and debris.",
+                "Apply Pressure: Use a clean cloth or bandage to apply pressure to stop bleeding.",
+                "Protect the Wound: Cover the cut with a sterile dressing or bandage.",
+                "Seek Medical Help: If the cut is deep or won't stop bleeding, seek medical attention.",
+                "Monitor for Infection: Watch for signs of infection such as redness, swelling, or pus."
+            ],
+            "requirements": [
+                "Clean water",
+                "Clean cloth or bandage",
+                "Sterile dressing or bandage"
+            ]
+        },
+        {
+            "Type": "Bruise",
+            "steps": [
+                "Apply Ice: Use a cold compress or ice pack wrapped in a cloth to reduce swelling.",
+                "Elevate the Area: Raise the bruised area above heart level if possible.",
+                "Rest and Protect: Rest the bruised area and protect it from further injury.",
+                "Monitor for Complications: Watch for signs of severe pain, numbness, or discoloration."
+            ],
+            "requirements": [
+                "Ice pack or cold compress",
+                "Cloth",
+                "Resting area"
+            ]
+        },
+        {
+            "Type": "Sprain",
+            "steps": [
+                "R.I.C.E Method: Rest, Ice, Compression, Elevation.",
+                "Rest: Avoid using the injured limb and give it time to heal.",
+                "Ice: Apply ice packs wrapped in cloth to reduce swelling and pain.",
+                "Compression: Use an elastic bandage to compress the injured area.",
+                "Elevation: Elevate the injured limb above heart level when possible."
+            ],
+            "requirements": [
+                "Ice packs",
+                "Elastic bandage",
+                "Resting area"
+            ]
+        },
+        {
+            "Type": "Fracture",
+            "steps": [
+                "Immobilize: Keep the injured limb still and in a stable position.",
+                "Apply Cold: Use ice packs wrapped in cloth to reduce swelling and pain.",
+                "Seek Medical Help: Fractures require professional medical assessment and treatment.",
+                "Monitor for Complications: Watch for signs of severe pain, swelling, or numbness."
+            ],
+            "requirements": [
+                "Immobilization device (splint, sling)",
+                "Ice packs",
+                "Medical attention"
+            ]
+        },
+        {
+            "Type": "Laceration",
+            "steps": [
+                "Stop Bleeding: Apply pressure to the wound with a clean cloth or bandage.",
+                "Clean the Wound: Rinse the laceration with clean water to remove dirt and debris.",
+                "Protect the Wound: Cover the laceration with a sterile dressing or bandage.",
+                "Seek Medical Help: Deep or severe lacerations may require stitches or medical attention.",
+                "Monitor for Infection: Watch for signs of infection such as redness, swelling, or pus."
+            ],
+            "requirements": [
+                "Clean cloth or bandage",
+                "Clean water",
+                "Sterile dressing or bandage"
+            ]
+        },
+        {
+            "Type": "Puncture",
+            "steps": [
+                "Clean the Wound: Rinse the puncture wound with clean water to remove dirt and debris.",
+                "Apply Pressure: Use a clean cloth or bandage to apply pressure to stop bleeding if present.",
+                "Protect the Wound: Cover the puncture wound with a sterile dressing or bandage.",
+                "Seek Medical Help: Puncture wounds may require medical assessment and tetanus vaccination.",
+                "Monitor for Infection: Watch for signs of infection such as redness, swelling, or pus."
+            ],
+            "requirements": [
+                "Clean water",
+                "Clean cloth or bandage",
+                "Sterile dressing or bandage"
+            ]
+        },
+        {
+            "Type": "Avulsion",
+            "steps": [
+                "Control Bleeding: Apply pressure to the avulsed area to stop bleeding.",
+                "Clean the Wound: Rinse the avulsion with clean water to remove dirt and debris.",
+                "Preserve Tissue: If possible, save any avulsed tissue in a clean container with saline solution.",
+                "Seek Immediate Medical Help: Avulsions often require surgical reattachment and immediate medical attention.",
+                "Protect the Wound: Cover the avulsed area with a sterile dressing or bandage."
+            ],
+            "requirements": [
+                "Clean water",
+                "Clean cloth or bandage",
+                "Sterile dressing or bandage",
+                "Saline solution (if tissue is preserved)"
+            ]
+        },
+        {
+            "Type": "Abrasions",
+            "steps": [
+                "Clean the Wound: Rinse the abrasion with clean water to remove dirt and debris.",
+                "Apply Antibiotic Ointment: Apply a thin layer of antibiotic ointment to prevent infection.",
+                "Cover the Wound: Use a sterile dressing or bandage to cover the abrasion.",
+                "Monitor for Infection: Watch for signs of infection such as redness, swelling, or pus.",
+                "Change Dressing: Change the dressing regularly and keep the abrasion clean and dry."
+            ],
+            "requirements": [
+                "Clean water",
+                "Antibiotic ointment",
+                "Sterile dressing or bandage"
+            ]
+        },
+        {
+            "Type": "Amputation",
+            "steps": [
+                "Control Bleeding: Apply pressure to the amputation site to stop bleeding.",
+                "Preserve the Amputated Part: If possible, wrap the amputated part in a clean, damp cloth and place it in a sealed plastic bag.",
+                "Seek Immediate Medical Help: Amputations require urgent medical attention and possible surgical intervention.",
+                "Protect the Wound: Cover the amputation site with a sterile dressing or bandage.",
+                "Monitor for Shock: Watch for signs of shock such as pale skin, rapid heartbeat, and shallow breathing."
+            ],
+            "requirements": [
+                "Clean cloth",
+                "Sealed plastic bag",
+                "Sterile dressing or bandage"
+            ]
+        }
+    ]
+}
