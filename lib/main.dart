@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'screen/auth/login.dart';
+import 'screen/landing_page.dart';
 import 'services/img_upload_repo.dart';
 import 'services/repository.dart';
 import 'services/wound_provider.dart';
@@ -56,9 +57,14 @@ class MyApp extends StatelessWidget {
           create: (context) => WoundService(),
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            theme: ThemeData(useMaterial3: true, fontFamily: 'SFRegular'),
-            home: const LoginScreen(),
+            title: 'First Aid Pro',
+            theme: ThemeData(
+              useMaterial3: true, 
+              fontFamily: 'SFRegular',
+              primarySwatch: Colors.red,
+              scaffoldBackgroundColor: Colors.white,
+            ),
+            home: const LandingPage(),
           ),
         );
       },
