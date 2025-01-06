@@ -11,7 +11,7 @@ import 'register.dart';
 import 'widget/loading_manager.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -28,11 +28,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formkey = GlobalKey<FormState>();
   bool _isLoading = false;
   final auth = FirebaseAuth.instance;
+
   @override
   void initState() {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-    // Focus Nodes
     _emailFocusNode = FocusNode();
     _passwordFocusNode = FocusNode();
     super.initState();
@@ -43,7 +43,6 @@ class _LoginScreenState extends State<LoginScreen> {
     if (mounted) {
       _emailController.dispose();
       _passwordController.dispose();
-      // Focus Nodes
       _emailFocusNode.dispose();
       _passwordFocusNode.dispose();
     }
@@ -65,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
           password: _passwordController.text.trim(),
         );
         Fluttertoast.showToast(
-          msg: "Login Succeful",
+          msg: "Login Successful",
           textColor: Colors.white,
         );
         if (!mounted) return;
@@ -96,182 +95,161 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         body: LoadingManager(
           isLoading: _isLoading,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  const Align(
-                      alignment: Alignment.centerLeft,
-                      child: TitlesTextWidget(label: "Welcome back!")),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Form(
-                    key: _formkey,
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color.fromARGB(255, 171, 11, 11),
+                  Color.fromARGB(255, 255, 194, 194),
+                ],
+              ),
+            ),
+            child: SafeArea(
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        TextFormField(
-                          controller: _emailController,
-                          focusNode: _emailFocusNode,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(
-                            hintText: "Email address",
-                            prefixIcon: Icon(
-                              Icons.message,
-                            ),
-                          ),
-                          onFieldSubmitted: (value) {
-                            FocusScope.of(context)
-                                .requestFocus(_passwordFocusNode);
-                          },
-                          validator: (value) {
-                            return MyValidators.emailValidator(value);
-                          },
+                        Icon(
+                          Icons.local_hospital,
+                          size: 80,
+                          color: Colors.white,
                         ),
-                        const SizedBox(
-                          height: 16.0,
+                        SizedBox(height: 24),
+                        TitlesTextWidget(
+                          label: "First Aid Pro",
+                          fontSize: 32,
+                          color: Colors.white,
                         ),
-                        TextFormField(
-                          obscureText: obscureText,
-                          controller: _passwordController,
-                          focusNode: _passwordFocusNode,
-                          textInputAction: TextInputAction.done,
-                          keyboardType: TextInputType.visiblePassword,
-                          decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  obscureText = !obscureText;
-                                });
-                              },
-                              icon: Icon(
-                                obscureText
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                              ),
-                            ),
-                            hintText: "***********",
-                            prefixIcon: const Icon(
-                              Icons.lock,
-                            ),
-                          ),
-                          onFieldSubmitted: (value) async {
-                            await _loginFct();
-                          },
-                          validator: (value) {
-                            return MyValidators.passwordValidator(value);
-                          },
-                        ),
-                        const SizedBox(
-                          height: 16.0,
-                        ),
-                        const SizedBox(
-                          height: 16.0,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.all(12.0),
-                              // backgroundColor: Colors.red,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  12.0,
-                                ),
-                              ),
-                            ),
-                            icon: const Icon(Icons.login),
-                            label: const Text("Login"),
-                            onPressed: () async {
-                              await _loginFct();
-                            },
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 16.0,
-                        ),
+                        SizedBox(height: 8),
                         SubtitleTextWidget(
-                          label: "Or connect using".toUpperCase(),
+                          label: "Your First Aid Companion",
+                          color: Colors.white70,
                         ),
-                        const SizedBox(
-                          height: 16.0,
-                        ),
-                        SizedBox(
-                          height: kBottomNavigationBarHeight + 10,
-                          child: Row(
+                        SizedBox(height: 48),
+                        Form(
+                          key: _formkey,
+                          child: Column(
                             children: [
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Expanded(
-                                child: SizedBox(
-                                  height: kBottomNavigationBarHeight,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      padding: const EdgeInsets.all(12.0),
-                                      // backgroundColor: Colors.red,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          12.0,
-                                        ),
-                                      ),
-                                    ),
-                                    child: const Text("Guest?"),
-                                    onPressed: () async {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => HomeScreen()),
-                                      );
-                                    },
+                              TextFormField(
+                                controller: _emailController,
+                                focusNode: _emailFocusNode,
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.emailAddress,
+                                style: TextStyle(color: Colors.white),
+                                decoration: InputDecoration(
+                                  hintText: "Email address",
+                                  hintStyle: TextStyle(color: Colors.white70),
+                                  prefixIcon: Icon(Icons.email, color: Colors.white70),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.white70),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(12),
                                   ),
                                 ),
+                                onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_passwordFocusNode),
+                                validator: (value) => MyValidators.emailValidator(value),
+                              ),
+                              SizedBox(height: 16),
+                              TextFormField(
+                                obscureText: obscureText,
+                                controller: _passwordController,
+                                focusNode: _passwordFocusNode,
+                                textInputAction: TextInputAction.done,
+                                keyboardType: TextInputType.visiblePassword,
+                                style: TextStyle(color: Colors.white),
+                                decoration: InputDecoration(
+                                  hintText: "Password",
+                                  hintStyle: TextStyle(color: Colors.white70),
+                                  prefixIcon: Icon(Icons.lock, color: Colors.white70),
+                                  suffixIcon: IconButton(
+                                    onPressed: () => setState(() => obscureText = !obscureText),
+                                    icon: Icon(
+                                      obscureText ? Icons.visibility : Icons.visibility_off,
+                                      color: Colors.white70,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.white70),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                onFieldSubmitted: (_) => _loginFct(),
+                                validator: (value) => MyValidators.passwordValidator(value),
+                              ),
+                              SizedBox(height: 24),
+                              ElevatedButton(
+                                onPressed: _loginFct,
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Color.fromARGB(255, 171, 11, 11), backgroundColor: Colors.white,
+                                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                child: Text("Login", style: TextStyle(fontSize: 18)),
+                              ),
+                              SizedBox(height: 16),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                                  );
+                                },
+                                child: Text(
+                                  "Continue as Guest",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              SizedBox(height: 24),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SubtitleTextWidget(
+                                    label: "New here?",
+                                    color: Colors.white70,
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => RegisterScreen()),
+                                      );
+                                    },
+                                    child: Text(
+                                      "Sign up",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 16.0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const SubtitleTextWidget(label: "New here?"),
-                            TextButton(
-                              child: const SubtitleTextWidget(
-                                label: "Sign up",
-                                fontStyle: FontStyle.italic,
-                                textDecoration: TextDecoration.underline,
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RegisterScreen()),
-                                );
-                              },
-                            ),
-                          ],
-                        )
                       ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
           ),
