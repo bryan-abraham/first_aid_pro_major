@@ -1,6 +1,7 @@
 import 'package:first_aid_pro_app/screen/pick_image/pick_image.dart';
 import 'package:flutter/material.dart';
 
+// ignore: unused_import
 import '../../core/const/constants.dart';
 import '../../services/wound_model_services.dart';
 import '../profile/profile_screen.dart';
@@ -21,116 +22,217 @@ class _HomeScreenState extends State<HomeScreen> {
         slivers: <Widget>[
           SliverAppBar(
             automaticallyImplyLeading: false,
-            pinned: false,
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(255, 171, 11, 11),
-                    Color.fromARGB(255, 255, 255, 255)
-                  ],
-                  stops: [0, 1],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-              ),
+            pinned: true,
+            floating: false,
+            elevation: 0,
+            expandedHeight: 180,
+            backgroundColor: const Color(0xFFAB0B0B),
+            flexibleSpace: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                var top = constraints.biggest.height;
+                return FlexibleSpaceBar(
+                  expandedTitleScale: 1.1,
+                  centerTitle: true,
+                  title: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 300),
+                    opacity: top < 130 ? 1.0 : 0.0,
+                    child: Container(
+                      width: double.infinity,
+                      child: const Center(
+                        child: Text(
+                          'First Aid Pro',
+                          style: TextStyle(
+                            fontFamily: 'SFBold',
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  titlePadding: EdgeInsets.zero,
+                  background: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0xFFAB0B0B),
+                          Color(0xFFFF5252),
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 50),
+                        const Text(
+                          'First Aid Pro',
+                          style: TextStyle(
+                            fontFamily: 'SFBold',
+                            fontSize: 32,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: const Text(
+                            'Your First Aid Companion',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
             leading: IconButton(
-              icon: Icon(Icons.menu),
+              icon: const Icon(Icons.menu, color: Colors.white),
               onPressed: () {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => ProfileScreen()));
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
               },
             ),
             actions: [
-              IconButton(
-                icon: Image.asset(
-                  'assets/images/scanner.png',
-                  width: 30,
+              Container(
+                margin: const EdgeInsets.only(right: 16),
+                child: IconButton(
+                  icon: Image.asset(
+                    'assets/images/scanner.png',
+                    width: 28,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PickImage(),
+                      ),
+                    );
+                  },
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PickImage(),
-                    ),
-                  );
-                },
               ),
-              SizedBox(width: 10)
             ],
-            expandedHeight: 100,
-            centerTitle: true,
-            title: const Column(
-              children: [
-                Text(
-                  'First Aid Pro',
-                  style: TextStyle(
-                      fontFamily: 'SFBold', fontSize: (30), color: kWhite),
-                ),
-                Text(
-                  'Your First Aid Companion',
-                  style: TextStyle(fontSize: 10, color: kWhite),
-                ),
-              ],
-            ),
           ),
           SliverToBoxAdapter(
             child: Container(
               decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(255, 255, 255, 255),
-                    Color.fromARGB(255, 255, 194, 194),
-                  ],
-                  stops: [0, 1],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
+                color: Colors.white,
               ),
               child: FutureBuilder(
                 future: loadWoundsData(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            children: [
+                              const Icon(
+                                Icons.error_outline,
+                                size: 48,
+                                color: Colors.red,
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                'Error: ${snapshot.error}',
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
                     }
                     return Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10, right: 10, bottom: 10),
+                      padding: const EdgeInsets.all(16),
                       child: ListView.builder(
                         primary: false,
                         shrinkWrap: true,
                         itemCount: snapshot.data?.length ?? 0,
                         itemBuilder: (context, index) {
                           var wound = snapshot.data![index];
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      WoundDetailsPage(wound: wound),
-                                ),
-                              );
-                            },
-                            child: Card(
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 12),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        WoundDetailsPage(wound: wound),
+                                  ),
+                                );
+                              },
                               child: Container(
-                                width: double.infinity,
-                                height: 200,
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      wound['Type'],
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.1),
+                                      spreadRadius: 2,
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 2),
                                     ),
                                   ],
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(
+                                          color: Color(0xFFAB0B0B),
+                                          width: 4,
+                                        ),
+                                      ),
+                                    ),
+                                    child: ListTile(
+                                      contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 20,
+                                        vertical: 16,
+                                      ),
+                                      title: Text(
+                                        wound['Type'],
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFF2D3142),
+                                        ),
+                                      ),
+                                      subtitle: Text(
+                                        '${wound['steps'].length} steps • ${wound['requirements'].length} requirements',
+                                        style: TextStyle(
+                                          color: Colors.grey[600],
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                      trailing: const Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 16,
+                                        color: Color(0xFFAB0B0B),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -139,7 +241,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     );
                   } else {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Padding(
+                      padding: EdgeInsets.all(32),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: Color(0xFFAB0B0B),
+                        ),
+                      ),
+                    );
                   }
                 },
               ),
