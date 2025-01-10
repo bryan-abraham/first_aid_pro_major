@@ -1,10 +1,9 @@
 import 'package:first_aid_pro_app/screen/pick_image/pick_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-// ignore: unused_import
 import '../../core/const/constants.dart';
 import '../../services/wound_model_services.dart';
-import '../profile/profile_screen.dart';
 import 'widget/wound_details.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,6 +14,38 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List woundData = [
+    {
+      'Image': 'assets/images/Burn.png',
+    },
+    {
+      'Image': 'assets/images/Cut.png',
+    },
+    {
+      'Image': 'assets/images/Bruise.png',
+    },
+    {
+      'Image': 'assets/images/Sprain.png',
+    },
+    {
+      'Image': 'assets/images/Fracture.png',
+    },
+    {
+      'Image': 'assets/images/Laceration.png',
+    },
+    {
+      'Image': 'assets/images/Puncture.png',
+    },
+    {
+      'Image': 'assets/images/Avulsion.png',
+    },
+    {
+      'Image': 'assets/images/Abrasions.png',
+    },
+    {
+      'Image': 'assets/images/Amputation.png',
+    }
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,157 +53,91 @@ class _HomeScreenState extends State<HomeScreen> {
         slivers: <Widget>[
           SliverAppBar(
             automaticallyImplyLeading: false,
-            pinned: true,
-            floating: false,
-            elevation: 0,
-            expandedHeight: 180,
-            backgroundColor: const Color(0xFFAB0B0B),
-            flexibleSpace: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                var top = constraints.biggest.height;
-                return FlexibleSpaceBar(
-                  expandedTitleScale: 1.1,
-                  centerTitle: true,
-                  title: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 300),
-                    opacity: top < 130 ? 1.0 : 0.0,
-                    child: Container(
-                      width: double.infinity,
-                      child: const Center(
-                        child: Text(
-                          'First Aid Pro',
-                          style: TextStyle(
-                            fontFamily: 'SFBold',
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  titlePadding: EdgeInsets.zero,
-                  background: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0xFFAB0B0B),
-                          Color(0xFFFF5252),
-                        ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 50),
-                        const Text(
-                          'First Aid Pro',
-                          style: TextStyle(
-                            fontFamily: 'SFBold',
-                            fontSize: 32,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Text(
-                            'Your First Aid Companion',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-            leading: IconButton(
-              icon: const Icon(Icons.menu, color: Colors.white),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ProfileScreen()),
-                );
-              },
-            ),
-            actions: [
-              Container(
-                margin: const EdgeInsets.only(right: 16),
-                child: IconButton(
-                  icon: Image.asset(
-                    'assets/images/scanner.png',
-                    width: 28,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PickImage(),
-                      ),
-                    );
-                  },
+            pinned: false,
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 171, 11, 11),
+                    Color.fromARGB(255, 255, 255, 255)
+                  ],
+                  stops: [0, 1],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                 ),
               ),
+            ),
+            // leading: IconButton(
+            //   icon: Icon(Icons.menu),
+            //   onPressed: () {
+            //     Navigator.of(context).push(
+            //         MaterialPageRoute(builder: (context) => ProfileScreen()));
+            //   },
+            // ),
+            actions: [
+              IconButton(
+                icon: Image.asset(
+                  'assets/images/scanner.png',
+                  width: 30,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PickImage(),
+                    ),
+                  );
+                },
+              ),
+              SizedBox(width: 10)
             ],
+            expandedHeight: 100,
+            centerTitle: true,
+            title: const Column(
+              children: [
+                Text(
+                  'First Aid Pro',
+                  style: TextStyle(
+                      fontFamily: 'SFBold', fontSize: (30), color: kWhite),
+                ),
+                Text(
+                  'Your First Aid Companion',
+                  style: TextStyle(fontSize: 10, color: kWhite),
+                ),
+              ],
+            ),
           ),
           SliverToBoxAdapter(
             child: Container(
               decoration: const BoxDecoration(
-                color: Colors.white,
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 255, 255, 255),
+                    Color.fromARGB(255, 255, 194, 194),
+                  ],
+                  stops: [0, 1],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
               ),
               child: FutureBuilder(
                 future: loadWoundsData(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasError) {
-                      return Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            children: [
-                              const Icon(
-                                Icons.error_outline,
-                                size: 48,
-                                color: Colors.red,
-                              ),
-                              const SizedBox(height: 16),
-                              Text(
-                                'Error: ${snapshot.error}',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
+                      return Text('Error: ${snapshot.error}');
                     }
                     return Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.only(
+                          left: 10, right: 10, bottom: 10),
                       child: ListView.builder(
                         primary: false,
                         shrinkWrap: true,
                         itemCount: snapshot.data?.length ?? 0,
                         itemBuilder: (context, index) {
                           var wound = snapshot.data![index];
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: GestureDetector(
+                          var woundimg = woundData[index];
+                          return GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                   context,
@@ -182,73 +147,79 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 );
                               },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.1),
-                                      spreadRadius: 2,
-                                      blurRadius: 8,
-                                      offset: const Offset(0, 2),
-                                    ),
-                                  ],
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      border: Border(
-                                        left: BorderSide(
-                                          color: Color(0xFFAB0B0B),
-                                          width: 4,
+                                elevation: 5,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  height: 200,
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            // Background Image
+                                            Container(
+                                              height: 200,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20.0),
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      woundimg['Image']),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+
+                                            Positioned(
+                                              bottom: 0,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(18.0),
+                                                    bottomRight:
+                                                        Radius.circular(18.0),
+                                                  ), // Ro
+
+                                                  color: Colors.black.withOpacity(
+                                                      0.3), // Ensuring text is visible on any background
+                                                ),
+                                                height: 50,
+                                                width: 340,
+                                                padding:
+                                                    const EdgeInsets.all(10),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  wound['Type'],
+                                                  style: const TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors
+                                                        .white, // Ensuring text is visible on any background
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ),
-                                    child: ListTile(
-                                      contentPadding: const EdgeInsets.symmetric(
-                                        horizontal: 20,
-                                        vertical: 16,
-                                      ),
-                                      title: Text(
-                                        wound['Type'],
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF2D3142),
-                                        ),
-                                      ),
-                                      subtitle: Text(
-                                        '${wound['steps'].length} steps • ${wound['requirements'].length} requirements',
-                                        style: TextStyle(
-                                          color: Colors.grey[600],
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                      trailing: const Icon(
-                                        Icons.arrow_forward_ios,
-                                        size: 16,
-                                        color: Color(0xFFAB0B0B),
-                                      ),
-                                    ),
+                                    ],
                                   ),
                                 ),
-                              ),
-                            ),
-                          );
+                              ));
                         },
                       ),
                     );
                   } else {
-                    return const Padding(
-                      padding: EdgeInsets.all(32),
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          color: Color(0xFFAB0B0B),
-                        ),
-                      ),
-                    );
+                    return const Center(child: CircularProgressIndicator());
                   }
                 },
               ),

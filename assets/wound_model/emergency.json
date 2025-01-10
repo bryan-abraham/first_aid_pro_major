@@ -1,0 +1,21 @@
+{
+    "emergency":[
+      {
+        "Type": "CPR",
+        "steps": [
+            "Check the scene for safety and ensure it is safe to approach the person in need.",
+            "Tap the person and shout to check for responsiveness. If unresponsive, call for emergency medical help.",
+            "If the person is not breathing or only gasping, begin CPR immediately.",
+            "Position the person on their back on a firm, flat surface.",
+            "Place the heel of one hand on the center of the chest and the other hand on top. Interlace your fingers.",
+            "Push hard and fast, at least 2 inches deep, at a rate of 100 to 120 compressions per minute. Allow the chest to recoil completely after each compression.",
+            "After 30 compressions, give 2 rescue breaths. Tilt the head back, lift the chin, and seal your mouth over the person's mouth. Pinch the nose and blow until the chest rises.",
+            "Continue cycles of 30 compressions and 2 breaths until professional help arrives or the person starts breathing.",
+            "If using an automated external defibrillator (AED) is possible, follow the device instructions and resume CPR after shocks if advised."
+            ],
+            "requirements": [
+            " "
+            ]
+  }
+]
+}

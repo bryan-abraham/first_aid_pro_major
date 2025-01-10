@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'auth/login.dart';
+import 'home/emergency_screen.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
 
   void _navigateToEmergency(BuildContext context) {
-    
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const EmergencyScreen()),
+    );
   }
 
   void _navigateToLogin(BuildContext context) {

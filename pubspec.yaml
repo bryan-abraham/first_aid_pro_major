@@ -74,6 +74,7 @@ flutter:
   assets:
     - assets/images/
     - assets/wound_model/wounds.json
+    - assets/wound_model/emergency.json
     - assets/animation/
 
     
